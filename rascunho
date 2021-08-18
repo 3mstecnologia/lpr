@@ -1,0 +1,3 @@
+ cv2.drawContours(img_origial, [NumPlacaCnt], -1,(0,255,0), 3)
+    if placadetectada == True:
+        cv2.imshow('Placa Detectada', nova_imagem)
