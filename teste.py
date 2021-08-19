@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import imutils
+import pytesseract as tesseract
 
 altura = 300
 largura = 300
@@ -17,7 +17,7 @@ cap = cv2.VideoCapture(0)
 
 if original == True:
     while True:
-        
+                
         ret, img_origial = cap.read()
         cv2.imshow('original',img_origial)
         key = cv2.waitKey(0)

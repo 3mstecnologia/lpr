@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 import imutils
-
+import pytesseract
+from datetime import datetime
 
 
 altura = 300
@@ -11,10 +12,11 @@ original = False
 cinza = False
 filtrada = False
 bordas = False
-imagemcontornada = True
-imagemtopcontornos = True
+imagemcontornada = False
+imagemtopcontornos = False
 placadetectada = True
 
+configtess = r' --oem 3 --psm 6'
 
 cameraPatio = 'rtsp://admin:admin@192.168.88.100:554/cam/realmonitor?channel=2&subtype=0'
 camerafrontal1 = 'rtsp://admin:admin@192.168.88.100:554/cam/realmonitor?channel=1&subtype=0'
@@ -68,9 +70,19 @@ while True:
             break
     if len(NumPlacaCnt) != 0:
         cv2.drawContours(img_origial, [NumPlacaCnt], -1,(0,255,0), 3)
-    if placadetectada == True:
-        cv2.imshow('Placa Detectada', nova_imagem)
+        placa_cropada_loc = 'Placa' + str(idx) + '.png'
+        placa = pytesseract.image_to_string(cv2.imread(placa_cropada_loc), config=configtess)
+    if len(placa) > 6:
+        print(placa)
+        if placadetectada == True:
+            cv2.imshow('Placa Detectada', nova_imagem)
+        
+    
+    
+    
+    
 
+   
 
 
     
