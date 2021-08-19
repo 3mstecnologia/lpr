@@ -1,3 +1,19 @@
  cv2.drawContours(img_origial, [NumPlacaCnt], -1,(0,255,0), 3)
     if placadetectada == True:
         cv2.imshow('Placa Detectada', nova_imagem)
+
+
+
+
+
+   
+    if len(placa) >= 7:
+        print(placa)
+        data_e_hora_atuais = datetime.now()
+        agora = data_e_hora_atuais.strftime('%d-%m-%Y-%H-%M-%S')
+        salvouarquivo = False
+        cv2.imshow('Detectou Placa',img_origial)
+        if cv2.imwrite(img_origial+agora+'.png', img_origial):
+            salvouarquivo = True
+        else:
+            print('falha ao salvar arquivo')
